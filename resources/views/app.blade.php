@@ -17,22 +17,15 @@
 
 </head>
 
-<body class="theme-light" id="root">
+<body class="theme-light">
+    <div id="root"></div>
 
 
-    </div>
-
-
-    <!-- Libs JS -->
-    <script src={{ mix('js/app.js') }} defer></script>
-    <script src="{{ asset('adminTheme/dist/libs/apexcharts/dist/apexcharts.min.js') }}" defer></script>
-    <script src="{{ asset('adminTheme/dist/libs/jsvectormap/dist/js/jsvectormap.min.js') }}" defer></script>
-    <script src={{ asset('adminTheme/dist/libs/jsvectormap/dist/maps/world.js') }} defer></script>
-    <script src={{ asset('adminTheme/dist/libs/jsvectormap/dist/maps/world-merc.js') }} defer></script>
     <!-- Tabler Core -->
     <script src={{ asset('adminTheme/dist/js/tabler.js') }} defer></script>
     <script src={{ asset('adminTheme/dist/js/demo.js') }} defer></script>
-
+    <!-- Libs JS -->
+    <script src={{ mix('js/app.js') }} defer></script>
     @yield('scripts')
 </body>
 

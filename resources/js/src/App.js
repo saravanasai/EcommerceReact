@@ -1,16 +1,32 @@
 import React from "react";
-import Layout from "./layout/Layout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AdminLayout from "./layout/AdminLayout";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AuthLayout from "./layout/AuthLayout";
 import routes from "./routes/routes";
+import Dashboard from "./pages/Admin/Dashboard";
+import AuthService from "./service/AuthService";
 function App() {
+    const authenticated = AuthService.isAuthenticated();
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout />}>
-                    {routes.map(({ Component, Path }, i) => {
+                <Route path="/" element={<>Home</>} />
+                <Route
+                    path="/admin"
+                    element={
+                        authenticated ? (
+                            <AdminLayout />
+                        ) : (
+                            <Navigate to="/login" />
+                        )
+                    }
+                >
+                    <Route index element={<Dashboard />} />
+                    {routes.map(({ Component, Path, Index }, i) => {
                         return (
                             <Route
+                                index={Index}
                                 key={i}
                                 path={Path}
                                 element={<Component />}
@@ -18,7 +34,7 @@ function App() {
                         );
                     })}
                 </Route>
-                <Route path="/login" element={<AuthLayout />} />
+                <Route path="/login" element={ authenticated ?  <Navigate to="/admin" /> : <AuthLayout />} />
             </Routes>
         </BrowserRouter>
     );

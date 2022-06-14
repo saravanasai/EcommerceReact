@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 const AuthLayout = () => {
+
+
+    const [state,setState]=useState({email:'',password:''})
+
+
+
     return (
         <>
             <div className="container-tight py-4 mt-5">
@@ -17,6 +25,7 @@ const AuthLayout = () => {
                             <label className="form-label">Email address</label>
                             <input
                                 type="email"
+                                onChange={(e)=>setState(prev=>({...prev,email:e.target.value}))}
                                 className="form-control"
                                 placeholder="Enter email"
                                 autoComplete="off"
@@ -34,6 +43,7 @@ const AuthLayout = () => {
                             <div className="input-group input-group-flat">
                                 <input
                                     type="password"
+                                    onChange={(e)=>setState(prev=>({...prev,password:e.target.value}))}
                                     className="form-control"
                                     placeholder="Password"
                                     autoComplete="off"
