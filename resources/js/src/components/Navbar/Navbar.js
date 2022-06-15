@@ -8,7 +8,7 @@ const Navbar = () => {
                     <div className="container-xl">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/admin">
+                                <Link className="nav-link" to="/dashboard">
                                     <span className="nav-link-icon d-md-none d-lg-inline-block">
                                         {/* Download SVG icon from http://tabler-icons.io/i/home */}
                                         <svg

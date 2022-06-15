@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "js-cookie": "^3.0.1",
+        "react-hot-toast": "^2.2.0",
         "react-router-dom": "^6.3.0"
     }
 }

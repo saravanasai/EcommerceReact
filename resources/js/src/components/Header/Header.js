@@ -1,3 +1,5 @@
+import Logout from "../Logout/Logout";
+
 const Header = () => {
     return (
         <header className="navbar navbar-expand-md navbar-dark d-print-none">
@@ -16,38 +18,7 @@ const Header = () => {
                 <div className="navbar-nav flex-row order-md-last">
                     <div className="nav-item d-none d-md-flex me-3">
                         <div className="btn-list">
-                            <a
-                                href="https://github.com/sponsors/codecalm"
-                                className="btn btn-dark"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-logout"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="2"
-                                    stroke="currentColor"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <desc>
-                                        Download more icon variants from
-                                        https://tabler-icons.io/i/logout
-                                    </desc>
-                                    <path
-                                        stroke="none"
-                                        d="M0 0h24v24H0z"
-                                        fill="none"
-                                    ></path>
-                                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
-                                    <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
-                                </svg>
-                                Logout
-                            </a>
+                            <Logout />
                         </div>
                     </div>
                 </div>

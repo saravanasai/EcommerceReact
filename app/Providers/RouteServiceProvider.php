@@ -19,6 +19,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+     public  $api_routes_path = [
+        ['folder' => 'Authentication', 'file' => 'auth_routes'],
+    ];
+
+    // protected $namespace = 'App\\Http\\Controllers';
     /**
      * The controller namespace for the application.
      *
@@ -26,7 +31,6 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    // protected $namespace = 'App\\Http\\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -42,6 +46,17 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
+
+              //Route for api controlls
+              foreach ($this->api_routes_path as $route) {
+
+                Route::prefix('api/v1')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path("routes/Api/{$route['folder']}/{$route['file']}.php"));
+
+            }
+
 
             Route::middleware('web')
                 ->namespace($this->namespace)

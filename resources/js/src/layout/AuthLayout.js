@@ -1,14 +1,44 @@
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import AuthService from "../service/AuthService";
 
-const AuthLayout = () => {
+function AuthLayout() {
+    const [state, setState] = useState({
+        email: "admin@exciteon.com",
+        password: "1234",
+    });
+
+    const handleLogin = () => {
+        const loadingToast = toast.loading("Authenticating...");
+        AuthService.login(state)
+            .then((e) => {
+                toast.dismiss(loadingToast);
+                if (e.status == 200) {
+                    AuthService.authenticate(e.data.token, e.data.data);
+                    toast.success("Authenticated Successfully!");
+                    setTimeout(() => {
+                        window.location.href =
+                            window.location.origin + "/dashboard";
+                    }, 2000);
+                }
 
 
-    const [state,setState]=useState({email:'',password:''})
-
-
+            })
+            .catch((e) => {
+                toast.dismiss(loadingToast);
+                if (e.response.status == 401) {
+                    // console.log(e.);
+                    toast.error(`${e.response.data.message}`);
+                }
+                if (e.response.status == 422) {
+                    toast.error(`${e.response.data.errors.password}`);
+                }
+            });
+    };
 
     return (
         <>
+            <Toaster />
             <div className="container-tight py-4 mt-5">
                 <div className="text-center mb-4"></div>
                 <form
@@ -25,7 +55,13 @@ const AuthLayout = () => {
                             <label className="form-label">Email address</label>
                             <input
                                 type="email"
-                                onChange={(e)=>setState(prev=>({...prev,email:e.target.value}))}
+                                onChange={(e) =>
+                                    setState((prev) => ({
+                                        ...prev,
+                                        email: e.target.value,
+                                    }))
+                                }
+                                value={state.email}
                                 className="form-control"
                                 placeholder="Enter email"
                                 autoComplete="off"
@@ -43,7 +79,13 @@ const AuthLayout = () => {
                             <div className="input-group input-group-flat">
                                 <input
                                     type="password"
-                                    onChange={(e)=>setState(prev=>({...prev,password:e.target.value}))}
+                                    value={state.password}
+                                    onChange={(e) =>
+                                        setState((prev) => ({
+                                            ...prev,
+                                            password: e.target.value,
+                                        }))
+                                    }
                                     className="form-control"
                                     placeholder="Password"
                                     autoComplete="off"
@@ -96,7 +138,8 @@ const AuthLayout = () => {
                         </div>
                         <div className="form-footer">
                             <button
-                                type="submit"
+                                onClick={handleLogin}
+                                type="button"
                                 className="btn btn-primary w-100"
                             >
                                 Sign in
@@ -113,6 +156,6 @@ const AuthLayout = () => {
             </div>
         </>
     );
-};
+}
 
 export default AuthLayout;

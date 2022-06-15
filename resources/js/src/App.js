@@ -13,7 +13,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<>Home</>} />
                 <Route
-                    path="/admin"
+                    path="/dashboard"
                     element={
                         authenticated ? (
                             <AdminLayout />
@@ -34,7 +34,16 @@ function App() {
                         );
                     })}
                 </Route>
-                <Route path="/login" element={ authenticated ?  <Navigate to="/admin" /> : <AuthLayout />} />
+                <Route
+                    path="/login"
+                    element={
+                        authenticated ? (
+                            <Navigate to="/dashboard" />
+                        ) : (
+                            <AuthLayout />
+                        )
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );

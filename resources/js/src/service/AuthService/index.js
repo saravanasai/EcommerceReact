@@ -1,4 +1,8 @@
 import Cookies from "js-cookie";
+import api from "../../config";
+
+const loginUrl = "login";
+const logoutUrl = "logout";
 
 class AuthService {
     isAuthenticated() {
@@ -8,12 +12,25 @@ class AuthService {
         // return true;
     }
 
-    authenticate(token) {
-        const expires = 60 * 60 * 1000;
-        const inOneHour = new Date(new Date().getTime() + expires);
+    authenticate(token, data) {
 
-        // you will have the exact same setters in your Login page/app too
-        Cookies.set("token", token, { expires: inOneHour });
+        Cookies.set("token", token);
+        localStorage.setItem("user", data);
+    }
+
+    unAuthenticate() {
+
+        Cookies.remove("token");
+        localStorage.removeItem("user");
+    }
+
+    login(data) {
+        return api.post(loginUrl, data);
+    }
+
+
+    logout() {
+        return api.post(logoutUrl);
     }
 }
 
