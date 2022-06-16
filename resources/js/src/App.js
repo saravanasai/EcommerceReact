@@ -5,13 +5,16 @@ import AuthLayout from "./layout/AuthLayout";
 import routes from "./routes/routes";
 import Dashboard from "./pages/Admin/Dashboard";
 import AuthService from "./service/AuthService";
+import NotFound from "./components/NotFound/NotFound";
+import Home from "./pages/Home/Home";
 function App() {
     const authenticated = AuthService.isAuthenticated();
+    const user = AuthService.authenticatedUser()
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<>Home</>} />
+                <Route path="/" element={user.is_admin==1 ? <Navigate to="/dashboard" /> : <Home />} />
                 <Route
                     path="/dashboard"
                     element={
@@ -44,6 +47,7 @@ function App() {
                         )
                     }
                 />
+                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );

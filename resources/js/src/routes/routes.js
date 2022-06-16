@@ -1,14 +1,14 @@
 
-import Home from "../pages/Home/Home.jsx";
+import Products from "../pages/Admin/Products/index.js";
+
 
 
 
 
 const routes = [
     {
-
-        Path: "home",
-        Component: Home,
+        Path: "products",
+        Component: Products,
     },
 ]
 

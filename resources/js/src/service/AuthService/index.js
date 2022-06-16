@@ -12,10 +12,16 @@ class AuthService {
         // return true;
     }
 
+    authenticatedUser() {
+        const info = localStorage.getItem("user");
+
+        return info ? JSON.parse(info) : false
+
+    }
     authenticate(token, data) {
 
         Cookies.set("token", token);
-        localStorage.setItem("user", data);
+        localStorage.setItem("user", JSON.stringify(data));
     }
 
     unAuthenticate() {

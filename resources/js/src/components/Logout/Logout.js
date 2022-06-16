@@ -16,7 +16,7 @@ function Logout  ()  {
                     toast.success("Logged Out!");
                    setTimeout(()=>{
                     window.location.href=window.location.origin+'/login'
-                   },2000)
+                   },1000)
 
                 }
             })

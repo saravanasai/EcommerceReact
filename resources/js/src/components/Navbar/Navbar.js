@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -8,7 +8,14 @@ const Navbar = () => {
                     <div className="container-xl">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/dashboard">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? "nav-link fw-bolder"
+                                            : "nav-link"
+                                    }
+                                    to="/dashboard"
+                                >
                                     <span className="nav-link-icon d-md-none d-lg-inline-block">
                                         {/* Download SVG icon from http://tabler-icons.io/i/home */}
                                         <svg
@@ -49,40 +56,46 @@ const Navbar = () => {
                                     <span className="nav-link-title">
                                         Dashboard
                                     </span>
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="home">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? "nav-link fw-bolder"
+                                            : "nav-link"
+                                    }
+                                    to="products"
+                                >
                                     <span className="nav-link-icon d-md-none d-lg-inline-block">
                                         {/* Download SVG icon from http://tabler-icons.io/i/home */}
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="icon"
-                                            width={24}
-                                            height={24}
+                                            class="icon icon-tabler icon-tabler-brand-producthunt"
+                                            width="24"
+                                            height="24"
                                             viewBox="0 0 24 24"
-                                            strokeWidth={2}
+                                            stroke-width="2"
                                             stroke="currentColor"
                                             fill="none"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
                                         >
-                                            <desc>
-                                                Download more icon variants from
-                                                https://tabler-icons.io/i/home
-                                            </desc>
                                             <path
                                                 stroke="none"
                                                 d="M0 0h24v24H0z"
                                                 fill="none"
-                                            />
-                                            <polyline points="5 12 3 12 12 3 21 12 19 12" />
-                                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                            ></path>
+                                            <path d="M10 16v-8h2.5a2.5 2.5 0 1 1 0 5h-2.5"></path>
+                                            <circle
+                                                cx="12"
+                                                cy="12"
+                                                r="9"
+                                            ></circle>
                                         </svg>
                                     </span>
-                                    <span className="nav-link-title">Home</span>
-                                </Link>
+                                    <span className="nav-link-title">Products</span>
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
